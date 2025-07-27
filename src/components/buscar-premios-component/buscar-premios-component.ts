@@ -13,22 +13,31 @@ import {Subscription} from 'rxjs';
 })
 export class BuscarPremiosComponent {
 
-  inputUsuario: string="";
-  inputCodigo: string="";
+  nombreUsuario: string="";
+  codigo: string="";
   premio :any;
   subscription : Subscription = new Subscription();
   constructor(private service: PremioService) {
   }
 
   onSubmit() {
-    this.subscription.add(this.service.getPremio(
-      this.inputUsuario, this.inputCodigo
-    ).subscribe({
+    const body=[
+      this.codigo,
+      this.nombreUsuario
+    ]
+    this.subscription.add(this.service.canjearPremio(body).subscribe({
       next: (premio) => {
-        this.premio = premio;
+        if (premio) {
+          alert("el premio ya ha sido canjeado el dia: "+premio);
+
+        }
+        else
+        {
+          alert("Premio canjeado exitosamente");
+        }
       },
       error: (err) => {
-        console.error('Error:', err);
+        console.error('Ha ocurrido un error:');
       }
     }));
   }

@@ -17,6 +17,8 @@
             "polyfills": [
               "zone.js"
             ],
+            "outputPath": "dist",
+            "baseHref": "/ulionEmpresas/",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -87,6 +89,9 @@
               "src/styles.css"
             ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

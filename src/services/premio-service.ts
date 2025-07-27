@@ -5,10 +5,12 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class PremioService {
-  private API_URL = 'http://localhost:8080/api/UlionBd/';
+  private API_URL = 'http://uliondominio2.zapto.org:5153/api/UlionBd/';
 
   constructor(private http: HttpClient) {}
-  getPremio(inputUsuario: string, inputCodigo: string) {
-    return this.http.get<any>(this.API_URL+"canjearPremio?codigo="+inputCodigo+"&nombreUsuario="+inputUsuario);
+
+  canjearPremio(body: any) {
+    return this.http.put<any>(this.API_URL + "canjearPremio", body);
+
   }
 }
