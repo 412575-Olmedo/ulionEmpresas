@@ -10,7 +10,9 @@ export class PremioService {
   constructor(private http: HttpClient) {}
 
   canjearPremio(body: any) {
-    return this.http.put<any>(this.API_URL + "canjearPremio", body);
+    return this.http.put<any>(this.API_URL + "canjearPremioFromBody", body, {
+      responseType: 'text' as 'json'
+    });
 
   }
 }

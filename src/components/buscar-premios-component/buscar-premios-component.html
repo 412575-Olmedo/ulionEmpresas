@@ -2,17 +2,18 @@
   <div class="card p-4" style="width: 100%; max-width: 400px;">
 
   <form #formPremios="ngForm" (ngSubmit)="onSubmit()">
-  <h4 class="card-title">Buscar Premio</h4>
+  <h4 class="card-title">Canjear Premio</h4>
     <div class="mb-3">
   <label class="form-label">Usuario:</label>
-  <input type="text" placeholder="ingrese el usuario...." class="form-control">
+  <input [(ngModel)]="nombreUsuario" name="nombreUsuario" type="text" placeholder="ingrese el usuario...." class="form-control">
     </div>
     <div class="mb-3">
   <label class="form-label">Codigo:</label>
-  <input type="text" placeholder="ingrese el codigo...." class="form-control">
+  <input [(ngModel)]="codigo" name="codigo"  type="text" placeholder="ingrese el codigo...." class="form-control">
     </div>
   <button class="btn btn-primary w-100">Buscar</button>
   </form>
   </div>
+  <pre>{{formPremios.value | json}}</pre>
+
 </div>
-<pre>{{formPremios.value}} | json</pre>

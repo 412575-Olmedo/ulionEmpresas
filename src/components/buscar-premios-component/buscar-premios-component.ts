@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {PremioService} from '../../services/premio-service';
 import {Subscription} from 'rxjs';
+import {JsonPipe} from '@angular/common';
 
 @Component({
   selector: 'app-buscar-premios-component',
   imports: [
-    FormsModule
+    FormsModule,
+    JsonPipe
   ],
   templateUrl: './buscar-premios-component.html',
   styleUrl: './buscar-premios-component.css'
@@ -21,23 +23,21 @@ export class BuscarPremiosComponent {
   }
 
   onSubmit() {
-    const body=[
-      this.codigo,
-      this.nombreUsuario
-    ]
-    this.subscription.add(this.service.canjearPremio(body).subscribe({
-      next: (premio) => {
-        if (premio) {
-          alert("el premio ya ha sido canjeado el dia: "+premio);
+    const body={
+      codigo:this.codigo,
+      nombreUsuario:this.nombreUsuario
+    }
 
-        }
-        else
-        {
-          alert("Premio canjeado exitosamente");
-        }
+
+    console.log(body);
+    this.subscription.add(this.service.canjearPremio(body).subscribe({
+
+      next: (premio) => {
+          alert(premio);
+
       },
       error: (err) => {
-        console.error('Ha ocurrido un error:');
+        alert(err.error);
       }
     }));
   }
